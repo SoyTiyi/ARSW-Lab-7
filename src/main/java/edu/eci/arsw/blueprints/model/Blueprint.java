@@ -60,7 +60,7 @@ public class Blueprint {
 
     @Override
     public String toString() {
-        return "Blueprint{" + "author=" + this.author + ", name=" + this.name + '}';
+        return "Blueprint{" + "author=" + this.author + ", name=" + this.name + ", points="+this.points.get(0).getX()+'}';
     }
 
     @Override

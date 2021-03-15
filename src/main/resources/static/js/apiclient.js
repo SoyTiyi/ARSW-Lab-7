@@ -23,6 +23,19 @@ var apiclient = (function () {
             }).catch(error => {
                 callback(error,null);
             })
+        },
+        putBlueprintAuthor: (name, author, dataSend, callback) => {
+            const promise = $.ajax({
+                url: `/blueprints/${author}/${name}`,
+                type: 'PUT',
+                data: dataSend,
+                contentType: "application/json"
+            }).then(data => {
+                console.log(data);
+                callback(null,data);
+            }).catch(error => {
+                callback(error,null);
+            });
         }
     }
 })();

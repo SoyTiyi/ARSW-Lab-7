@@ -75,12 +75,12 @@ public class BlueprintAPIController {
     
     @RequestMapping(path = "/{author}/{name}",method = RequestMethod.PUT)	
     public ResponseEntity<?> PutBlueprint(@PathVariable ("author") String author, @PathVariable ("name") String name, @RequestBody Blueprint newBp ){
-        
         try {
+            System.out.println(newBp.toString());
             bps.modifyOrAddBlueprint(newBp, author, name);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (BlueprintPersistenceException ex) {
-            Logger.getLogger(BlueprintAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
             return new ResponseEntity<>(ex.getMessage(),HttpStatus.FORBIDDEN);
         }
     }

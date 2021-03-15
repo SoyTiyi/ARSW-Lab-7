@@ -1,5 +1,6 @@
-.canvas {
+.canvasStyle {
     text-align: center;
     border: 1px solid black;
     align-items: center;
+    display: block;
 }

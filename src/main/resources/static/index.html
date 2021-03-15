@@ -12,9 +12,11 @@
     <script src="js/apimock.js"></script>
     <script src="js/apiclient.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/canvasEvent.js"></script>
+
 </head>
 
-<body>
+<body onLoad="canvasEvent.load();">
     <h1>Blueprints</h1>
     <input id="input" placeholder="name">
     <button id="bluePrint" onclick="app.setListBluePrintsByAuthor(input.value)" class="btn btn-primary">Get blueprints</button>
@@ -36,9 +38,11 @@
     <div id="authorPoints"> </div>
 
     <div id="nameBluePrint"> </div>
-    <canvas id="canvas" class="canvas"width="700" height="500">
-
+    <canvas id="canvas" class="canvasStyle"width="700" height="500">
     </canvas>
+    <button class="btn btn-primary" onclick="canvasEvent.saveUpdateDraw()">Save/Update</button>
+
+    <script src="js/canvasEvent.js"></script>
 </body>
 
 </html>

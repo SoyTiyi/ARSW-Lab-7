@@ -1,7 +1,8 @@
 const app = (() => {
 
     var listBluePrints = []
-
+    var currentAuthor = "";
+    var currentName = "";
     var mockdata = apimock.getMockData();
 
     mockdata.map(author => {
@@ -18,6 +19,9 @@ const app = (() => {
     }
 
     const drawCanvas = (name, author) => {
+        canvasEvent.clearPoints();
+        currentAuthor = author;
+        currentName = name;
         console.log("Hola", name, author);
         apiclient.getBlueprintsByNameAndAuthor(name, author, (error, data) => {
             if (error != null) {
@@ -75,6 +79,12 @@ const app = (() => {
 
                 $('#authorPoints').text(totalPoints);
             })
+        },
+        getCurrent: () => {
+            return {
+                author: currentAuthor,
+                name: currentName
+            };
         }
     };
 })();
