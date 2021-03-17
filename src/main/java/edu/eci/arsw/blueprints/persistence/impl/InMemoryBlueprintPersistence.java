@@ -105,5 +105,15 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence{
             blueprints.replace(new Tuple<>(newBp.getAuthor(),newBp.getName()), blueprint, newBp);
         }           
     }
+
+    @Override
+    public void deleteBluePrint(Blueprint bp) throws BlueprintPersistenceException {
+        Blueprint deBp = blueprints.get(new Tuple<>(bp.getAuthor(),bp.getName()));
+        if(deBp != null ){
+            System.out.println("Entre if");
+            blueprints.remove(new Tuple<>(bp.getAuthor(),bp.getName()));
+            System.out.println("Eliminado");
+        }
+    }
  
 }

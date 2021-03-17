@@ -65,6 +65,7 @@ public class BlueprintAPIController {
         
         try {
             bps.addNewBlueprint(newBp);
+            System.out.println("Creado");
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (BlueprintPersistenceException ex) {
             Logger.getLogger(BlueprintAPIController.class.getName()).log(Level.SEVERE, null, ex);
@@ -82,6 +83,18 @@ public class BlueprintAPIController {
         } catch (BlueprintPersistenceException ex) {
             System.out.println(ex.getMessage());
             return new ResponseEntity<>(ex.getMessage(),HttpStatus.FORBIDDEN);
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE)
+    public ResponseEntity<?> DeleteBluePrint(@RequestBody Blueprint bp){
+        try {
+            System.out.println("Entre "+bp.getName()+" "+bp.getAuthor());
+            bps.deleteBluePrint(bp);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.FORBIDDEN);
         }
     }
 }

@@ -60,8 +60,53 @@ var canvasEvent = (function () {
           alert("Verificar datos");
           return;
         }
-        else{
+        else {
           alert("Guardado/Actualizado");
+          return;
+        }
+      });
+    },
+    DeleteBluePrint: () => {
+      const author = $('#input').val();
+      const currentSelect = app.getCurrent();
+      if (currentSelect !== null) {
+        bp = {
+          author: currentSelect.author,
+          name: currentSelect.name
+        };
+        console.log(bp.author, bp.name);
+        apiclient.deleteBlueprint(JSON.stringify(bp), (error, resp) => {
+          if (error !== null) {
+            alert("Verificar datos");
+            return;
+          } else {
+            app.setListBluePrintsByAuthor(author);
+            var canvas = $('#canvas')[0];
+            var ctx = canvas.getContext('2d');
+            canvas.width = canvas.width;
+            alert("Eliminado");
+            return;
+          }
+        });
+      }
+    },
+    CreateBluePrint: () => {
+      const author = $('#input').val();
+      const name = window.prompt("Blueprints name:");
+      console.log(points)
+      bp = {
+        author: author,
+        name: name,
+        points: points
+      };
+      apiclient.createBluePrint(JSON.stringify(bp), (error, resp) => {
+        if (error !== null) {
+          alert("Verificar datos");
+          return;
+        }
+        else {
+          app.setListBluePrintsByAuthor(author);
+          alert("Creado");
           return;
         }
       });

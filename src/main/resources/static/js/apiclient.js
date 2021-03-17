@@ -36,6 +36,34 @@ var apiclient = (function () {
             }).catch(error => {
                 callback(error,null);
             });
+        },
+        deleteBlueprint: (dataSend, callback) => {
+            const promise = $.ajax({
+                url: "/blueprints",
+                type: 'DELETE',
+                data: dataSend,
+                contentType: "application/json"
+            }).then(response => {
+                callback(null, response);
+                console.log(response);
+            }).catch(error => {
+                callback(JSON.stringify(error),null);
+                console.log(`Error: ${error}`);
+            })
+
+        },
+        createBluePrint: (dataSend, callback) => {
+            const promise = $.post({
+                url: "/blueprints",
+                data: dataSend,
+                contentType: "application/json"
+            }).then(response => {
+                console.log(response);
+                callback(null,response);
+            }).catch(error => {
+                callback(JSON.stringify(error),null);
+                console.log(`Error: ${error}`);
+            });
         }
     }
 })();
